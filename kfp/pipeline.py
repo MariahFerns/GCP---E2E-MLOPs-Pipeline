@@ -7,7 +7,7 @@ from collections import namedtuple
 from typing import NamedTuple
 
 
-PROJECT_ID = "polar-arbor-437711-h3" # replace with project ID
+PROJECT_ID = "hardy-beach-451607-k9" # replace with project ID
 REGION = "us-central1"
 EXPERIMENT = 'vertex-pipelines'
 

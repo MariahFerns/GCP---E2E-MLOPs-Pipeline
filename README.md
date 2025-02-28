@@ -67,7 +67,7 @@ This guide will help you set up a CI/CD pipeline for your ML models using Google
    - region: `us-central1` *any according to your project*
    - Leave everything else default and create the container repository.
 
-2. Update the `cloudbuild.yaml` file in your GitHub repository with:
+2. Update the `cloudbuild.yaml` and `kfp\pipeline.py` files in your GitHub repository with:
     - **Project ID**
     - **Region**
     - **GCR repository name**
