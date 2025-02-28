@@ -83,7 +83,7 @@ def get_data(
     df = query_job.to_dataframe()
     
     # Split Data
-    train, test = train_test_split(df, test_size=0.2, random_state=42)
+    train, test = train_test_split(df, test_size=0.3, random_state=42)
 
     # Save to Outputs
     train.to_csv(dataset_train.path, index=False)
