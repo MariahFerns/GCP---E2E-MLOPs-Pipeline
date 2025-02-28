@@ -22,7 +22,7 @@ options:
     logging: CLOUD_LOGGING_ONLY
     
 substitutions:
-   _PROJECT_ID: 'polar-arbor-437711-h3'
+   _PROJECT_ID: 'hardy-beach-451607-k9'
    _REGION: 'us-central1'
    _ARTIFACT_LOCATION: 'us-central1-docker.pkg.dev'
-   _REPO_NAME: 'docker-repo'
+   _REPO_NAME: 'docker-image-repo'
