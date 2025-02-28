@@ -1,6 +1,6 @@
 # ML-OPS CI/CD Pipeline with GCP
 
-This guide will help you set up a CI/CD pipeline for your ML models using Google Cloud Platform (GCP). This pipeline will enable continuous integration and deployment (CI/CD) with Vertex AI, Cloud Build, and GitHub.
+This guide will help you set up a CI/CD pipeline for your ML models using Google Cloud Platform (GCP). This pipeline will enable continuous integration and deployment (CI/CD) with Vertex AI, Cloud Build, and GitHub
 
 ## Prerequisites
 
