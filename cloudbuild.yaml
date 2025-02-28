@@ -1,0 +1,28 @@
+steps:
+  # Step 1: Build the Docker image(s)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', '$_ARTIFACT_LOCATION/$_PROJECT_ID/$_REPO_NAME/cicd-mlops1-v1:latest', './kfp']
+  
+  # Step 2: Push the image back to container registry 
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '$_ARTIFACT_LOCATION/$_PROJECT_ID/$_REPO_NAME/cicd-mlops1-v1:latest']
+
+  # Step 3: Run the Python file within the container
+  - name: '$_ARTIFACT_LOCATION/$_PROJECT_ID/$_REPO_NAME/cicd-mlops1-v1:latest'
+    args: ['python', './kfp/pipeline.py']  
+    env:
+    - 'PROJECT_ID=$_PROJECT_ID'
+    - 'REGION=$_REGION'
+    
+  # Step 4: Write results to Google Cloud Storage
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['cp', './xgb-pipeline.yaml', 'gs://$_PROJECT_ID-bucket'] 
+
+options:
+    logging: CLOUD_LOGGING_ONLY
+    
+substitutions:
+   _PROJECT_ID: 'polar-arbor-437711-h3'
+   _REGION: 'us-central1'
+   _ARTIFACT_LOCATION: 'us-central1-docker.pkg.dev'
+   _REPO_NAME: 'docker-repo'
