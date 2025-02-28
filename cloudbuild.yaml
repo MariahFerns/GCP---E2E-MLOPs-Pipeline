@@ -16,7 +16,7 @@ steps:
     
   # Step 4: Write results to Google Cloud Storage
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['cp', './xgb-pipeline.yaml', 'gs://$_PROJECT_ID-bucket'] 
+    args: ['cp', './xgb-pipeline.yaml', 'gs://$_BUCKET_NAME'] 
 
 options:
     logging: CLOUD_LOGGING_ONLY
@@ -26,3 +26,4 @@ substitutions:
    _REGION: 'us-central1'
    _ARTIFACT_LOCATION: 'us-central1-docker.pkg.dev'
    _REPO_NAME: 'docker-image-repo'
+   _BUCKET_NAME: 'gcp-bucket-mf'
