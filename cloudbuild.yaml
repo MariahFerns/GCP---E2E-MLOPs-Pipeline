@@ -26,4 +26,3 @@ substitutions:
    _REGION: 'us-central1'
    _ARTIFACT_LOCATION: 'us-central1-docker.pkg.dev'
    _REPO_NAME: 'docker-repo'
-   _BUCKET_NAME: 'gcp-bucket-mf'
