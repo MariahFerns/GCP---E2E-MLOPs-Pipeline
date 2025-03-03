@@ -2,8 +2,8 @@ import base64
 import json
 from google.cloud import aiplatform
 
-PROJECT_ID = 'your-project-id'                     # <---CHANGE THIS
-REGION = 'your-region'                             # <---CHANGE THIS
+PROJECT_ID = 'hardy-beach-451607-k9'                     # <---CHANGE THIS
+REGION = 'us-central1'                             # <---CHANGE THIS
 
 def subscribe(event, context):
     """Triggered by a change to a Cloud Storage bucket.
