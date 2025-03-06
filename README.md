@@ -37,13 +37,15 @@ This guide will help you set up a CI/CD pipeline for your ML models using Google
    
    - Once a host connection is made connect the repository in which your code is hosted by clicking link repository
 
-   ![Connect Repository](https://drive.google.com/uc?export=view&id=1P5SKmdeuH88EliSVZiO5__S0PFPp1GYX) 
+   ![Connect Repository](https://github.com/user-attachments/assets/a3551a16-8131-4dca-b3f6-19e612fa6642)
+
 
    -If you've correctly configured the above it should look like this
 
-   ![Configured Connection and Repository](https://drive.google.com/uc?export=view&id=1BOm3Pbyf7OoPImZmFKXxx8PwJb5813WY)
+   ![Configured Connection and Repository](https://github.com/user-attachments/assets/b1272cdd-6d27-4bec-b47a-8a3961c60af6)
 
-3. Select the repository where your code is hosted and create a trigger for commits pushed to the `main` branch:
+
+4. Select the repository where your code is hosted and create a trigger for commits pushed to the `main` branch:
    
    **Cloud Build → Triggers → Create Trigger**
    - Event : Push to a branch
@@ -52,7 +54,8 @@ This guide will help you set up a CI/CD pipeline for your ML models using Google
    - Configuration Type: `Cloud Build configuration file (yaml or json)`
    - location: Repository → `cloudbuild.yaml`
 
-   ![Create Cloud Build Trigger](https://drive.google.com/uc?export=view&id=1p_sT6kYJJA8aKWc21Kd7L8tqoNj-_P27) 
+   ![Create Cloud Build Trigger](https://github.com/user-attachments/assets/c4714888-2c7d-4ab9-bd2d-91c8196fc4ef)
+
 
    - After configuring all these you will have to select the service account you want to link to the trigger; Select the service account we configured earlier and click create.
    
@@ -88,14 +91,17 @@ This guide will help you set up a CI/CD pipeline for your ML models using Google
 
 **Enable apis and give the service account permissions if prompted to do so**
 
-1. Create a **Cloud Function** that listens for changes to your GCS bucket:
-   - Go to **Cloud Run Functions** → Create Function
+1. Bucket: Create any bucket in the same region (name = project_id-bucket) or choose an already configured bucket
+2. Create a **Cloud Function** that listens for changes to your GCS bucket:
+   ![image](https://github.com/user-attachments/assets/4506de5b-88ba-43f5-8bdd-9e21481d81d1)
+
+   - Click on the three dots next to bucket name and go to **Process with Cloud Run Functions**
+   - Enable any API's that may be requested
    - Trigger Type: `Cloud Storage` 
    - Event Type: `google.cloud.storage.object.v1.finalized`
-   - Bucket: Create any bucket in the same region or choose an already configured bucket
-   - Leave everything else default and click next
+     ![image](https://github.com/user-attachments/assets/39e14555-e8f2-46a7-ab48-ae9ae39a36f5)   
 
-2. Runtime: **Python 3.8**
+3. Runtime: **Python 3.8**
    - Replace the **Entry Point** placeholder with `subscribe`.
    - Replace the `main.py` with the `cloudfunction.py` from the github repository.
    - Replace the values in the snippet based on your project configurations
@@ -106,14 +112,18 @@ This guide will help you set up a CI/CD pipeline for your ML models using Google
     ```
 
 
-3. In the `requirements.txt`, ensure you have the following dependencies:
+4. In the `requirements.txt`, ensure you have the following dependencies:
 
    ```
    google-api-python-client>=1.7.8,<2
    google-cloud-aiplatform[pipelines]
    ```
 
-   ![Cloud Function Setup](https://drive.google.com/uc?export=view&id=1Kxn5XoXx1eKsZlHOR4z5v4FX2QONegKy) 
+   ![image](https://github.com/user-attachments/assets/8b3eb8ab-97ab-4db5-8a55-f0158b825fd4)
+   - Leave everything else default and click Deploy Function
+
+   ![Cloud Function Setup](https://github.com/user-attachments/assets/08a499b7-bc70-470e-9860-ad6593410689)
+
 
 ### 6. Commit and Push to GitHub
 
@@ -125,7 +135,8 @@ This guide will help you set up a CI/CD pipeline for your ML models using Google
 
    - You can also monitor the build in Cloud Build; This will take around 15 Minutes to execute. 
 
-   ![Cloud Build Logs](https://drive.google.com/uc?export=view&id=1fmBx-hBuB0l5Apw012WL5cT6nU6e9c_d)
+   ![Cloud Build Logs](https://github.com/user-attachments/assets/1b290e9f-bba6-41bd-84b1-f8699440219b)
+
 
    - Once the cloud build gets completed you should see a `xgbpipeline` in `PROJECT_ID-bucket` bucket in Google Cloud storage.
    
@@ -133,7 +144,8 @@ This guide will help you set up a CI/CD pipeline for your ML models using Google
 
    - You can then view the ML pipeline in Vertex AI Pipelines
 
-   - ![Vertex AI Pipeline](https://drive.google.com/uc?export=view&id=1DSlhLdfyh_0bjqjINw8UaCiiTJAv_gY1)
+   - ![Vertex AI Pipeline](https://github.com/user-attachments/assets/28f329f5-8ce8-4836-b52f-c9fbb50c8a60)
+
 
 **Note if you want to understand the individual components of the ML pipeline checkout `kfp\pipeline.py`**
 
