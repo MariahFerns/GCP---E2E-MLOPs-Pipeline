@@ -131,7 +131,8 @@ This guide will help you set up a CI/CD pipeline for your ML models using Google
    - Trigger the Cloud Build pipeline.
    - Upon completion, trigger the Cloud Function that will create and deploy your ML pipeline.
 
-   ![GitHub Commit and Cloud Build Trigger](https://drive.google.com/uc?export=view&id=116o1G_kDCxu72w3AvZUqc0vO6PHNU5jB) 
+   ![GitHub Commit and Cloud Build Trigger](https://github.com/user-attachments/assets/7f05ecf2-1edc-42ae-8d81-1ffae41417d7)
+
 
    - You can also monitor the build in Cloud Build; This will take around 15 Minutes to execute. 
 
@@ -182,7 +183,19 @@ Once you've finished testing or no longer need the resources, follow these steps
 2. Find the service account you created for the pipeline.
 3. Click on the service account and select **Delete**.
 
-### 5. Disable Enabled APIs
+### 5. Delete GCS Buckets
+
+1. Go to **Cloud Storage** in the GCP console.
+2. Find and select the bucket you used for the pipeline.
+3. Click **Delete** to remove the bucket and its contents.
+
+### 6. Delete models from Vertex AI
+
+1. Go to **Vertex AI** in the GCP console.
+2. Under Model Registry, click on the deployed model and from Deploy and test tab first undeploy the model.
+3. Then go back to the model and you will be able to delete it.
+
+### 7. Disable Enabled APIs
 
 1. Go to **APIs & Services** → **Enabled APIs & Services**.
 2. Locate the following APIs you enabled during setup:
@@ -191,13 +204,8 @@ Once you've finished testing or no longer need the resources, follow these steps
    - Cloud Run API
 3. For each API, click **Manage** and then **Disable**.
 
-### 6. Delete GCS Buckets
 
-1. Go to **Cloud Storage** in the GCP console.
-2. Find and select the bucket you used for the pipeline.
-3. Click **Delete** to remove the bucket and its contents.
-
-### 7. Delete the GCP Project (Optional)
+### 8. Delete the GCP Project (Optional)
 
 If you created a dedicated project for this setup and no longer need it:
 1. Go to the **IAM & Admin** → **Settings**.
